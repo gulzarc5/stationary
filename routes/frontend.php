@@ -10,7 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::group(['prefix' => 'product','namespace'=>'Web'],function(){
+    Route::get('list/{slug}/{category_id}/{type}','ProductController@list')->name('web.listWithCategory');
+    Route::get('list/ajax/{sort?}/{brand?}','ProductController@listAjax')->name('web.listAjax');
+    Route::get('details/{slug}/{id}','ProductController@productDetail')->name('web.productDetail');
+});
 
 Route::get('/', function () {
     return view('web.index');

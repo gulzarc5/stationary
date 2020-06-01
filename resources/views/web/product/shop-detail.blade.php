@@ -10,6 +10,10 @@
         <!-- site__header / end -->
         <!-- site__body -->
         <div class="site__body">
+            @if (isset($product) && !empty($product))
+            @php
+                $product_size = $product->minSize;
+            @endphp
             <div class="block-header block-header--has-breadcrumb">
                 <div class="container-fluid">
                     <div class="block-header__body">
@@ -42,63 +46,90 @@
                                                 </svg>
                                             </button>
                                             <div class="owl-carousel">
-                                                <a href="{{asset('web/images/products/1d.jpg')}}" target="_blank"><img src="{{asset('web/images/products/1d.jpg')}}" alt=""> </a>
-                                                <a href="{{asset('web/images/products/1a.jpg')}}" target="_blank"><img src="{{asset('web/images/products/1a.jpg')}}" alt=""> </a>
-                                                <a href="{{asset('web/images/products/3a.jpg')}}" target="_blank"><img src="{{asset('web/images/products/3a.jpg')}}" alt=""> </a>
-                                                <a href="{{asset('web/images/products/4a.jpg')}}" target="_blank"><img src="{{asset('web/images/products/4a.jpg')}}" alt=""></a>
+                                                <a href="{{asset('images/products/'.$product->main_image.'')}}" target="_blank"><img src="{{asset('images/products/thumb/'.$product->main_image.'')}}" alt=""> </a>
+                                                @foreach ($product->images as $image)    
+                                                    @if ($product->main_image != $image->image)                                          
+                                                        <a href="{{asset('images/products/'.$image->image.'')}}" target="_blank"><img src="{{asset('images/products/'.$image->image.'')}}" alt=""> </a>
+                                                    @endif
+                                                @endforeach
+                                                {{-- <a href="{{asset('web/images/products/3a.jpg')}}" target="_blank"><img src="{{asset('web/images/products/3a.jpg')}}" alt=""> </a>
+                                                <a href="{{asset('web/images/products/4a.jpg')}}" target="_blank"><img src="{{asset('web/images/products/4a.jpg')}}" alt=""></a> --}}
                                             </div>
                                         </div>
                                         <div class="product-gallery__thumbnails">
                                             <div class="owl-carousel">
-                                                <a href="{{asset('web/images/products/2b.jpg')}}" class="product-gallery__thumbnails-item" target="_blank"><img src="{{asset('web/images/products/2b.jpg')}}" alt=""> </a>
-                                                <a href="{{asset('web/images/products/1b.jpg')}}" class="product-gallery__thumbnails-item" target="_blank"><img src="{{asset('web/images/products/1b.jpg')}}" alt=""> </a>
-                                                <a href="{{asset('web/images/products/3b.jpg')}}" class="product-gallery__thumbnails-item" target="_blank"><img src="{{asset('web/images/products/3b.jpg')}}" alt=""> </a>
-                                                <a href="{{asset('web/images/products/4b.jpg')}}" class="product-gallery__thumbnails-item" target="_blank"><img src="{{asset('web/images/products/4b.jpg')}}" alt=""></a>
+                                                <a href="{{asset('images/products/thumb/'.$product->main_image.'')}}" class="product-gallery__thumbnails-item" target="_blank"><img src="{{asset('images/products/thumb/'.$product->main_image.'')}}" alt=""> </a>
+
+                                                @foreach ($product->images as $image)    
+                                                    @if ($product->main_image != $image->image) 
+                                                        <a href="{{asset('images/products/'.$image->image.'')}}" class="product-gallery__thumbnails-item" target="_blank"><img src="{{asset('images/products/'.$image->image.'')}}" alt=""> </a>
+                                                    @endif
+                                                @endforeach
+                                                {{-- <a href="{{asset('web/images/products/3b.jpg')}}" class="product-gallery__thumbnails-item" target="_blank"><img src="{{asset('web/images/products/3b.jpg')}}" alt=""> </a>
+                                                <a href="{{asset('web/images/products/4b.jpg')}}" class="product-gallery__thumbnails-item" target="_blank"><img src="{{asset('web/images/products/4b.jpg')}}" alt=""></a> --}}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="product__header">
-                                        <h1 class="product__title">Brandix Brake Kit BDX-750Z370-S</h1>
+                                        <h1 class="product__title">{{$product->name}}</h1>
                                         <div class="product__tittle__info">
-                                         	<h5><strong>SKU : </strong>201902-0057</h5> 
-                                         	<h5><strong>Brand : </strong>Camlin</h5> 
+                                             <h5><strong>SKU : </strong>201902-0057</h5> 
+                                             @if (isset($product->brand) && !empty($product->brand))
+                                         	    <h5><strong>Brand : </strong>{{$product->brand->name}}</h5> 
+                                             @endif
                                          </div> 
                                         <div class="stock__status">
-                                        	<div class="status-badge status-badge--style--success product__stock status-badge--has-text">
-	                                            <div class="status-badge__body">
-	                                                <div class="status-badge__text">In Stock</div>
-	                                                <div class="status-badge__tooltip" tabindex="0" data-toggle="tooltip" title="In&#x20;Stock"></div>
-	                                            </div>
-	                                        </div>
-	                                        <div class="status-badge status-badge--style--failure status-badge--has-text">
-	                                        	<div class="status-badge__body">
-	                                        		<div class="status-badge__text">Out of Stock</div>
-	                                        		<div class="status-badge__tooltip" tabindex="0" data-toggle="tooltip" title="" data-original-title="Out of Stock"></div>
-	                                        	</div>
-	                                        </div> 
+                                            @if (isset($product_size[0]) && !empty($product_size[0])) 
+                                                @if ($product_size[0]->stock > 0)
+                                                    <div class="status-badge status-badge--style--success product__stock status-badge--has-text">
+                                                        <div class="status-badge__body">
+                                                            <div class="status-badge__text">In Stock</div>
+                                                            <div class="status-badge__tooltip" tabindex="0" data-toggle="tooltip" title="In&#x20;Stock"></div>
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                <div class="status-badge status-badge--style--failure status-badge--has-text">
+                                                    <div class="status-badge__body">
+                                                        <div class="status-badge__text">Out of Stock</div>
+                                                        <div class="status-badge__tooltip" tabindex="0" data-toggle="tooltip" title="" data-original-title="Out of Stock"></div>
+                                                    </div>
+                                                </div> 
+                                                @endif
+                                            @endif
+                                           
+	                                        
                                         </div>   
                                     </div>
                                     <div class="product__main">
-                                        <div class="product__excerpt">Many philosophical debates that began in ancient times are still debated today. In one general sense, philosophy is associated with wisdom, intellectual culture and a search for knowledge.</div>
-                                        <div class="product__features">
-                                            <div class="product__features-title">Key Features:</div>
-                                            <ul>
-                                                <li>Speed: <span>750 RPM</span></li>
-                                                <li>Power Source: <span>Cordless-Electric</span></li>
-                                                <li>Battery Cell Type: <span>Lithium</span></li>
-                                                <li>Voltage: <span>20 Volts</span></li>
-                                                <li>Battery Capacity: <span>2 Ah</span></li>
-                                            </ul>
-                                            <div class="product__features-link"><a href="#">See Full Specification</a></div>
+                                        <div class="product__excerpt">
+                                            {{$product->short_description}}
                                         </div>
+                                        @if (isset($product->specifications) && !empty($product->specifications))                                           
+                                            <div class="product__features">
+                                                <div class="product__features-title">Key Features:</div>
+                                                <ul>
+                                                    @foreach ($product->specifications as $specification)
+                                                        <li>{{$specification->name}}: <span>{{$specification->value}}</span></li>
+                                                    @endforeach
+                                                    {{-- <li>Power Source: <span>Cordless-Electric</span></li>
+                                                    <li>Battery Cell Type: <span>Lithium</span></li>
+                                                    <li>Voltage: <span>20 Volts</span></li>
+                                                    <li>Battery Capacity: <span>2 Ah</span></li> --}}
+                                                </ul>
+                                                <div class="product__features-link"><a href="#">See Full Specification</a></div>
+                                            </div>
+                                        @endif
+                                        
                                     </div>
                                     <div class="product__info">
                                         <form class="product__info-card" action="{{route('web.cart.cart')}}">
                                             <div class="product__info-body">
                                                 <div class="product__prices-stock">
                                                     <div class="product__prices">
-	                                                    <div class="product-card__price product-card__price--old">$2,100.00</div>
-                                                        <div class="product__price product__price--current">$1,499.00</div>
+                                                        @if (isset($product_size[0]))
+                                                            <div class="product-card__price product-card__price--old">{{$product_size[0]->mrp}}</div>
+                                                            <div class="product__price product__price--current">{{$product_size[0]->customer_price}}</div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -154,10 +185,7 @@
                                         <div class="product-tabs__content">
                                             <div class="product-tabs__pane product-tabs__pane--active" id="product-tab-description">
                                                 <div class="typography">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum, diam non iaculis finibus, ipsum arcu sollicitudin dolor, ut cursus sapien sem sed purus. Donec vitae fringilla tortor, sed fermentum nunc. Suspendisse sodales turpis dolor, at rutrum dolor tristique id. Quisque pellentesque ullamcorper felis, eget gravida mi elementum a. Maecenas consectetur volutpat ante, sit amet molestie urna luctus in. Nulla eget dolor semper urna malesuada dictum. Duis eleifend pellentesque dui et finibus. Pellentesque dapibus dignissim augue. Etiam odio est, sodales ac aliquam id, iaculis eget lacus. Aenean porta, ante vitae suscipit pulvinar, purus dui interdum tellus, sed dapibus mi mauris vitae tellus.</p>
-                                                    <h4>Etiam lacus lacus mollis in mattis</h4>
-                                                    <p>Praesent mattis eget augue ac elementum. Maecenas vel ante ut enim mollis accumsan. Vestibulum vel eros at mi suscipit feugiat. Sed tortor purus, vulputate et eros a, rhoncus laoreet orci. Proin sapien neque, commodo at porta in, vehicula eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Curabitur porta vulputate augue, at sollicitudin nisl molestie eget.</p>
-                                                    <p>Nunc sollicitudin, nunc id accumsan semper, libero nunc aliquet nulla, nec pretium ipsum risus ac neque. Morbi eu facilisis purus. Quisque mi tortor, cursus in nulla ut, laoreet commodo quam. Pellentesque et ornare sapien. In ac est tempus urna tincidunt finibus. Integer erat ipsum, tristique ac lobortis sit amet, dapibus sit amet purus. Nam sed lorem nisi. Vestibulum ultrices tincidunt turpis, sit amet fringilla odio scelerisque non.</p>
+                                                    <p>{!!$product->long_description!!}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -212,39 +240,45 @@
                                                 <div class="container-fluid">
                             <div class="block-sale__carousel">
                                 <div class="owl-carousel">
-                                    <div class="block-sale__item">
-                                        <div class="product-card">
-                                            <div class="product-card__actions-list">
-                                                <button class="product-card__action product-card__action--quickview" type="button" aria-label="Add to wish list">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
-                                                        <path d="M13.9,8.4l-5.4,5.4c-0.3,0.3-0.7,0.3-1,0L2.1,8.4c-1.5-1.5-1.5-3.8,0-5.3C2.8,2.4,3.8,2,4.8,2s1.9,0.4,2.6,1.1L8,3.7
-                                                        l0.6-0.6C9.3,2.4,10.3,2,11.3,2c1,0,1.9,0.4,2.6,1.1C15.4,4.6,15.4,6.9,13.9,8.4z" />
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                            <div class="product-card__image">
-                                                <a href="shop-detail.php"><img src="{{asset('web/images/products/1a.jpg')}}" alt=""></a>
-                                            </div>
-                                            <div class="product-card__info">
-                                                <div class="product-card__meta"><span class="product-card__meta-title">SKU:</span> 140-10440-B</div>
-                                                <div class="product-card__name">
-                                                    <div>
-                                                        <a href="shop-detail.php">Brandix Spark Plug Kit ASR-400111</a>
+                                    @if (isset($related_product) && !empty($related_product))
+                                        @foreach ($related_product as $item)
+                                            <div class="block-sale__item">
+                                                <div class="product-card">
+                                                    <div class="product-card__actions-list">
+                                                        <button class="product-card__action product-card__action--quickview" type="button" aria-label="Add to wish list">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+                                                                <path d="M13.9,8.4l-5.4,5.4c-0.3,0.3-0.7,0.3-1,0L2.1,8.4c-1.5-1.5-1.5-3.8,0-5.3C2.8,2.4,3.8,2,4.8,2s1.9,0.4,2.6,1.1L8,3.7
+                                                                l0.6-0.6C9.3,2.4,10.3,2,11.3,2c1,0,1.9,0.4,2.6,1.1C15.4,4.6,15.4,6.9,13.9,8.4z" />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                    <div class="product-card__image">
+                                                        <a href="{{route('web.productDetail',['slug'=>$item->slug,'id'=>$item->id])}}"><img src="{{asset('images/products/'.$item->main_image.'')}}" alt=""></a>
+                                                    </div>
+                                                    <div class="product-card__info">
+                                                        <div class="product-card__meta"><span class="product-card__meta-title">SKU:</span> 140-10440-B</div>
+                                                        <div class="product-card__name">
+                                                            <div>
+                                                                <a href="{{route('web.productDetail',['slug'=>$item->slug,'id'=>$item->id])}}">{{$item->name}}</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-card__footer">
+                                                        <div class="product-card__prices">
+                                                            @if (isset($item->minSize) && isset($item->minSize[0]))
+                                                                <div class="product-card__price product-card__price--old">{{$item->minSize[0]->mrp}}</div>
+                                                                <div class="product-card__price product-card__price--current">{{$item->minSize[0]->customer_price}}</div>
+                                                            @endif
+                                                        </div>
+                                                        <a class="product-card__addtocart-icon" aria-label="Add to cart" href="{{route('web.productDetail',['slug'=>$item->slug,'id'=>$item->id])}}">
+                                                            <i class="fa fa-arrow-right"></i>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="product-card__footer">
-                                                <div class="product-card__prices">
-                                                    <div class="product-card__price product-card__price--old">$21.00</div>
-                                                    <div class="product-card__price product-card__price--current">$19.00</div>
-                                                </div>
-                                                <a class="product-card__addtocart-icon" aria-label="Add to cart" href="shop-detail.php">
-                                                    <i class="fa fa-arrow-right"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="block-sale__item">
+                                        @endforeach
+                                    @endif
+                                    {{-- <div class="block-sale__item">
                                         <div class="product-card">
                                             <div class="product-card__actions-list">
                                                 <button class="product-card__action product-card__action--quickview" type="button" aria-label="Add to wish list">
@@ -467,13 +501,14 @@
                                                 </a>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>                
+            @endif
         </div>
         <!-- site__body / end -->
         <!-- site__footer -->

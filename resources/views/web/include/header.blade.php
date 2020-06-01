@@ -108,28 +108,36 @@
                             <ul class="main-menu__list">
                                 <li class="main-menu__item"><a href="{{route('web.index')}}" class="main-menu__link">Home</a>
                                 </li>
-                                <li class="main-menu__item main-menu__item--submenu--megamenu main-menu__item--has-submenu"><a class="main-menu__link">Categories <svg xmlns="http://www.w3.org/2000/svg" width="7px" height="5px"><path d="M0.280,0.282 C0.645,-0.084 1.238,-0.077 1.596,0.297 L3.504,2.310 L5.413,0.297 C5.770,-0.077 6.363,-0.084 6.728,0.282 C7.080,0.634 7.088,1.203 6.746,1.565 L3.504,5.007 L0.262,1.565 C-0.080,1.203 -0.072,0.634 0.280,0.282 Z"/></svg></a>
-                                    <div class="main-menu__submenu">
-                                        <div class="main-menu__megamenu main-menu__megamenu--size--nl">
-                                            <div class="megamenu">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <ul class="megamenu__links megamenu-links megamenu-links--root">
-                                                            <li class="megamenu-links__item megamenu-links__item--has-submenu"><a class="megamenu-links__item-link" href="#">All Catagories</a>
-                                                                <ul class="megamenu-links">
-                                                                    <li class="megamenu-links__item"><a class="megamenu-links__item-link" href="{{route('web.product.shop-list')}}">Disposable Products</a></li>
-                                                                    <li class="megamenu-links__item"><a class="megamenu-links__item-link" href="{{route('web.product.shop-list')}}">Housekeeping Products</a></li>
-                                                                    <li class="megamenu-links__item"><a class="megamenu-links__item-link" href="{{route('web.product.shop-list')}}">Packaging Material</a></li>
-                                                                    <li class="megamenu-links__item"><a class="megamenu-links__item-link" href="{{route('web.product.shop-list')}}">Stationery</a></li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
+                                @if (isset($header_data['categories']) && !empty($header_data['categories']))
+                                    @foreach ($header_data['categories'] as $mainCategory)
+
+                                    <li class="main-menu__item main-menu__item--submenu--megamenu main-menu__item--has-submenu"><a class="main-menu__link">{{$mainCategory->name}} <svg xmlns="http://www.w3.org/2000/svg" width="7px" height="5px"><path d="M0.280,0.282 C0.645,-0.084 1.238,-0.077 1.596,0.297 L3.504,2.310 L5.413,0.297 C5.770,-0.077 6.363,-0.084 6.728,0.282 C7.080,0.634 7.088,1.203 6.746,1.565 L3.504,5.007 L0.262,1.565 C-0.080,1.203 -0.072,0.634 0.280,0.282 Z"/></svg></a>
+                                        <div class="main-menu__submenu">
+                                            <div class="main-menu__megamenu main-menu__megamenu--size--nl">
+                                                <div class="megamenu">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <ul class="megamenu__links megamenu-links megamenu-links--root">
+                                                                
+                                                                <li class="megamenu-links__item megamenu-links__item--has-submenu"><a class="megamenu-links__item-link" href="{{route('web.listWithCategory',['slug'=>$mainCategory->slug,'category_id'=>$mainCategory->id,'type'=>1])}}">{{$mainCategory->name}}</a>
+                                                                    @if (isset($mainCategory->subCategory) && !empty($mainCategory->subCategory))
+                                                                    <ul class="megamenu-links">
+                                                                        @foreach ($mainCategory->subCategory as $item)
+                                                                        <li class="megamenu-links__item"><a class="megamenu-links__item-link" href="{{route('web.listWithCategory',['slug'=>$item->slug,'category_id'=>$item->id,'type'=>2])}}">{{$item->name}}</a></li>
+                                                                        @endforeach
+                                                                    </ul>                                                                        
+                                                                    @endif
+                                                                </li>                                                               
+                                                                
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                    @endforeach                                                                
+                                @endif
                                 <li class="main-menu__item"><a href="index.html" class="main-menu__link">Latest Product</a>
                                 </li>
                                 <li class="main-menu__item"><a href="index.html" class="main-menu__link">About Us</a>

@@ -11,7 +11,7 @@ class Product extends Model
     protected $table = 'products';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'name', 'slug', 'category_id','sub_category_id','brand_id','main_image','short_description','long_description','status ',
+        'name', 'slug', 'category_id','sub_category_id','brand_id','main_image','customer_min_price','retailer_min_price','short_description','long_description','status ',
     ];
 
     public function category()
@@ -33,6 +33,13 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\ProductSize','product_id',$this->primaryKey);
     }
+
+    public function minSize()
+    {
+        return $this->hasMany('App\Models\ProductSize','product_id',$this->primaryKey)
+        ->where('product_sizes.customer_price',$this->sizes->min('customer_price'));
+    }
+
 
     public function specifications()
     {

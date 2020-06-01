@@ -103,9 +103,10 @@ class ProductController extends Controller
                     'main_image' => $banner
                 ]);
             }
-
+            $min_customer_price = 0;
+            $min_retailer_price = 0;
             if (isset($size) && !empty($size)) {
-                
+                $size_flag = true;
                 for ($i=0; $i < count($size); $i++) { 
 
                     $p_size = isset($size[$i]) ? $size[$i] : null;
@@ -116,6 +117,18 @@ class ProductController extends Controller
                     $p_retailer_discount = isset($retailer_discount[$i]) ? $retailer_discount[$i] : null;
                     $p_min_order_quantity = isset($min_order_quantity[$i]) ? $min_order_quantity[$i] : null;
                     $p_stock = isset($stock[$i]) ? $stock[$i] : null;
+
+                    if ($size_flag) {
+                        $min_customer_price = $p_customer_price;
+                        $min_retailer_price = $p_retailer_price;
+                        $size_flag = false;
+                    }
+                    if ($min_customer_price > $p_customer_price) {
+                        $min_customer_price = $p_customer_price;
+                    }
+                    if ($min_retailer_price > $p_retailer_price) {
+                        $min_customer_price = $p_retailer_price;
+                    }
 
                     ProductSize::create([
                         'name' => $p_size,
@@ -132,6 +145,11 @@ class ProductController extends Controller
                 }
             }
 
+            Product::where('id', $product->id)->update([
+                'customer_min_price' => $min_customer_price,
+                'retailer_min_price' => $min_retailer_price,
+            ]);
+
             if (isset($specification_name) && !empty($specification_name)) {
                 for ($i=0; $i < count($specification_name); $i++) { 
                     $p_specification_name = isset($specification_name[$i]) ? $specification_name[$i] : null;
@@ -146,7 +164,7 @@ class ProductController extends Controller
                 }
             }
 
-            // return redirect()->back()->with('message','Product Added Successfully');
+            return redirect()->back()->with('message','Product Added Successfully');
         } else {
             return redirect()->back()->with('error','Something Went Wrong Please Try Again');
         }

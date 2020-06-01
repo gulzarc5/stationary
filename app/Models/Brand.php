@@ -19,4 +19,9 @@ class Brand extends Model
         return $this->belongsTo('App\Models\Categories','category_id');
     }
 
+    public function productBrand()
+    {
+        return $this->hasMany('App\Models\Product','brand_id',$this->primaryKey);
+    }
+
 }
