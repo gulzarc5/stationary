@@ -179,6 +179,7 @@ return [
         
         Yajra\DataTables\DataTablesServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Darryldecode\Cart\CartServiceProvider::class
 
     ],
 
@@ -235,6 +236,7 @@ return [
         
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class
 
     ],
 
