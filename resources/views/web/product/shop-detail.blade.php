@@ -163,7 +163,7 @@
                                             </div>
                                             <div class="product__actions">
                                                 <div class="product__actions-item product__actions-item--addtocart" style="margin-right: 5px">
-                                                    <button class="btn btn-primary btn-lg btn-block">Add to cart</button>
+                                                    <a href="{{route('product.add_to_cart', ['id' =>$product->id])}}" class="btn btn-primary btn-lg btn-block">Add to cart</a>
                                                 </div>
                                                 <div class="product__actions-item product__actions-item--addtocart">
                                                     <button class="btn btn-warning btn-lg btn-block">Buy Now</button>

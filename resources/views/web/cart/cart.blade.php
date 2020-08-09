@@ -40,27 +40,29 @@
                                     </tr>
                                 </thead>
                                 <tbody class="cart-table__body">
+                                    @if(Session::has('cart'))
+                                    @foreach(session('cart') as $id => $cart)
                                     <tr class="cart-table__row">
                                         <td class="cart-table__column cart-table__column--image">
-                                            <a href="#"><img src="{{asset('web/images/products/4a.jpg')}}" alt=""></a>
+                                            <a href="#"><img src="{{asset('/images/products/'.$cart['main_image'])}}" alt=""></a>
                                         </td>
-                                        <td class="cart-table__column cart-table__column--product"><a href="#" class="cart-table__product-name">Glossy Gray 19" Aluminium Wheel AR-19</a>
+                                        <td class="cart-table__column cart-table__column--product"><a href="#" class="cart-table__product-name">{{$cart['name']}}</a>
                                             <ul class="cart-table__options">
                                                 <li>Color: Yellow</li>
                                                 <li>Material: Aluminium</li>
                                             </ul>
                                         </td>
-                                        <td class="cart-table__column cart-table__column--price" data-title="Price">$699.00</td>
+                                        <td class="cart-table__column cart-table__column--price" data-title="Price">${{number_format($cart['retailer_min_price'], 2)}}</td>
                                         <td class="cart-table__column cart-table__column--quantity" data-title="Quantity">
                                             <div class="cart-table__quantity input-number">
-                                                <input class="form-control input-number__input" type="number" min="1" value="2">
+                                                <input class="form-control input-number__input" type="number" min="1" value="{{$cart['quantity']}}">
                                                 <div class="input-number__add"></div>
                                                 <div class="input-number__sub"></div>
                                             </div>
                                         </td>
-                                        <td class="cart-table__column cart-table__column--total" data-title="Total">$1398.00</td>
+                                        <td class="cart-table__column cart-table__column--total" data-title="Total">${{number_format($cart['quantity'] * $cart['retailer_min_price'], 2)}}</td>
                                         <td class="cart-table__column cart-table__column--remove">
-                                            <button type="button" class="cart-table__remove btn btn-sm btn-icon btn-muted">
+                                        <button type="button" class="cart-table__remove btn btn-sm btn-icon btn-muted dropcart__item-remove" data-id="{{ $id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12">
                                                     <path d="M10.8,10.8L10.8,10.8c-0.4,0.4-1,0.4-1.4,0L6,7.4l-3.4,3.4c-0.4,0.4-1,0.4-1.4,0l0,0c-0.4-0.4-0.4-1,0-1.4L4.6,6L1.2,2.6
 													c-0.4-0.4-0.4-1,0-1.4l0,0c0.4-0.4,1-0.4,1.4,0L6,4.6l3.4-3.4c0.4-0.4,1-0.4,1.4,0l0,0c0.4,0.4,0.4,1,0,1.4L7.4,6l3.4,3.4
@@ -69,58 +71,8 @@
                                             </button>
                                         </td>
                                     </tr>
-                                    <tr class="cart-table__row">
-                                        <td class="cart-table__column cart-table__column--image">
-                                            <a href="#"><img src="{{asset('web/images/products/2a.jpg')}}" alt=""></a>
-                                        </td>
-                                        <td class="cart-table__column cart-table__column--product"><a href="#" class="cart-table__product-name">Brandix Brake Kit BDX-750Z370-S</a></td>
-                                        <td class="cart-table__column cart-table__column--price" data-title="Price">$849.00</td>
-                                        <td class="cart-table__column cart-table__column--quantity" data-title="Quantity">
-                                            <div class="cart-table__quantity input-number">
-                                                <input class="form-control input-number__input" type="number" min="1" value="1">
-                                                <div class="input-number__add"></div>
-                                                <div class="input-number__sub"></div>
-                                            </div>
-                                        </td>
-                                        <td class="cart-table__column cart-table__column--total" data-title="Total">$849.00</td>
-                                        <td class="cart-table__column cart-table__column--remove">
-                                            <button type="button" class="cart-table__remove btn btn-sm btn-icon btn-muted">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12">
-                                                    <path d="M10.8,10.8L10.8,10.8c-0.4,0.4-1,0.4-1.4,0L6,7.4l-3.4,3.4c-0.4,0.4-1,0.4-1.4,0l0,0c-0.4-0.4-0.4-1,0-1.4L4.6,6L1.2,2.6
-													c-0.4-0.4-0.4-1,0-1.4l0,0c0.4-0.4,1-0.4,1.4,0L6,4.6l3.4-3.4c0.4-0.4,1-0.4,1.4,0l0,0c0.4,0.4,0.4,1,0,1.4L7.4,6l3.4,3.4
-													C11.2,9.8,11.2,10.4,10.8,10.8z" />
-                                                </svg>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="cart-table__row">
-                                        <td class="cart-table__column cart-table__column--image">
-                                            <a href="#"><img src="{{asset('web/images/products/3a.jpg')}}" alt=""></a>
-                                        </td>
-                                        <td class="cart-table__column cart-table__column--product"><a href="#" class="cart-table__product-name">Twin Exhaust Pipe From Brandix Z54</a>
-                                            <ul class="cart-table__options">
-                                                <li>Color: True Red</li>
-                                            </ul>
-                                        </td>
-                                        <td class="cart-table__column cart-table__column--price" data-title="Price">$1210.00</td>
-                                        <td class="cart-table__column cart-table__column--quantity" data-title="Quantity">
-                                            <div class="cart-table__quantity input-number">
-                                                <input class="form-control input-number__input" type="number" min="1" value="3">
-                                                <div class="input-number__add"></div>
-                                                <div class="input-number__sub"></div>
-                                            </div>
-                                        </td>
-                                        <td class="cart-table__column cart-table__column--total" data-title="Total">$3630.00</td>
-                                        <td class="cart-table__column cart-table__column--remove">
-                                            <button type="button" class="cart-table__remove btn btn-sm btn-icon btn-muted">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12">
-                                                    <path d="M10.8,10.8L10.8,10.8c-0.4,0.4-1,0.4-1.4,0L6,7.4l-3.4,3.4c-0.4,0.4-1,0.4-1.4,0l0,0c-0.4-0.4-0.4-1,0-1.4L4.6,6L1.2,2.6
-													c-0.4-0.4-0.4-1,0-1.4l0,0c0.4-0.4,1-0.4,1.4,0L6,4.6l3.4-3.4c0.4-0.4,1-0.4,1.4,0l0,0c0.4,0.4,0.4,1,0,1.4L7.4,6l3.4,3.4
-													C11.2,9.8,11.2,10.4,10.8,10.8z" />
-                                                </svg>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                    @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>

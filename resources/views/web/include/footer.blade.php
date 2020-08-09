@@ -194,6 +194,39 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function(){
+            $(".update-cart").click(function (e) {
+               e.preventDefault();
+               var ele = $(this);
+                $.ajax({
+                   url: '{{ url('update-cart') }}',
+                   method: "patch",
+                   data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), quantity: ele.parent().parent().find(".quantity").val()},
+                   success: function (response) {
+                       window.location.reload();
+                   }
+                });
+            });
+     
+            $(".dropcart__item-remove").click(function (e) {
+                e.preventDefault();
+     
+                var ele = $(this);
+     
+                if(confirm("Are you sure")) {
+                    $.ajax({
+                        url: '{{ url('remove-from-cart') }}',
+                        method: "DELETE",
+                        data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id")},
+                        success: function (response) {
+                            window.location.reload();
+                        }
+                    });
+                }
+            });
+        })
+    </script>
 </body>
 
 </html>

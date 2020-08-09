@@ -262,16 +262,32 @@
                     C26,18.5,30,23.8,30,30h-2C28,23.4,22.6,18,16,18z M22,10c0-3.3-2.7-6-6-6s-6,2.7-6,6s2.7,6,6,6S22,13.3,22,10z"/></svg> </span><span class="indicator__title">Hello, Log In</span> <span class="indicator__value">My Account</span></a>
                         <div class="indicator__content">
                             <div class="account-menu">
-                                <form class="account-menu__form">
+                                @if(!Auth::check())
+                                {{ Form::open(array('url' => 'login', 'method' => 'post', 'class' => 'account-menu__form')) }}
                                     <div class="account-menu__form-title">Log In to Your Account</div>
                                     <div class="form-group">
                                         <label for="header-signin-email" class="sr-only">Email address</label>
-                                        <input id="header-signin-email" type="email" class="form-control form-control-sm" placeholder="Email address">
+                                        <input id="header-signin-email" type="email" name="email" class="form-control form-control-sm" placeholder="Email address">
+                                        @if ($message = Session::get('login_error'))
+                                            <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                        @endif
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="header-signin-password" class="sr-only">Password</label>
                                         <div class="account-menu__form-forgot">
-                                            <input id="header-signin-password" type="password" class="form-control form-control-sm" placeholder="Password"> <a href="#" class="account-menu__form-forgot-link">Forgot?</a></div>
+                                            <input id="header-signin-password" type="password" name="password" class="form-control form-control-sm" placeholder="Password"> <a href="#" class="account-menu__form-forgot-link">Forgot?</a></div>
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                     </div>
                                     <div class="form-group account-menu__form-button">
                                         <button type="submit" class="btn btn-primary btn-sm">Login</button>
@@ -279,11 +295,12 @@
                                     <div class="account-menu__form-link"><a href="{{route('web.register')}}">Create An Account</a></div>
                                 </form>
                                 <div class="account-menu__divider"></div>
+                                @else
                                 <a href="#" class="account-menu__user">
                                     <div class="account-menu__user-avatar"><img src="{{asset('web/images/avatars/avatar-4.jpg')}}" alt=""></div>
                                     <div class="account-menu__user-info">
-                                        <div class="account-menu__user-name">Ryan Ford</div>
-                                        <div class="account-menu__user-email">red-parts@example.com</div>
+                                        <div class="account-menu__user-name">{{Auth::user()->name}}</div>
+                                        <div class="account-menu__user-email">{{Auth::user()->email}}</div>
                                     </div>
                                 </a>
                                 <div class="account-menu__divider"></div>
@@ -295,42 +312,54 @@
                                 </ul>
                                 <div class="account-menu__divider"></div>
                                 <ul class="account-menu__links">
-                                    <li><a href="">Logout</a></li>
+                                    <li>
+                                        <a href="{{ route('user.logout') }}" class="fa fa-sign-out pull-right" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+                                            Logout
+                                        </a>     
+                                        <form id="frm-logout" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
                                 </ul>
+                                @endif
                             </div>
                         </div>
                     </div>
                     <div class="indicator indicator--trigger--click"><a href="cart.html" class="indicator__button"><span class="indicator__icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><circle cx="10.5" cy="27.5" r="2.5"/><circle cx="23.5" cy="27.5" r="2.5"/><path d="M26.4,21H11.2C10,21,9,20.2,8.8,19.1L5.4,4.8C5.3,4.3,4.9,4,4.4,4H1C0.4,4,0,3.6,0,3s0.4-1,1-1h3.4C5.8,2,7,3,7.3,4.3
                     l3.4,14.3c0.1,0.2,0.3,0.4,0.5,0.4h15.2c0.2,0,0.4-0.1,0.5-0.4l3.1-10c0.1-0.2,0-0.4-0.1-0.4C29.8,8.1,29.7,8,29.5,8H14
-                    c-0.6,0-1-0.4-1-1s0.4-1,1-1h15.5c0.8,0,1.5,0.4,2,1c0.5,0.6,0.6,1.5,0.4,2.2l-3.1,10C28.5,20.3,27.5,21,26.4,21z"/></svg> <span class="    indicator__counter">3</span> </span><span class="indicator__title">Shopping Cart</span> <span class="indicator__value">$250.00</span></a>
+                    c-0.6,0-1-0.4-1-1s0.4-1,1-1h15.5c0.8,0,1.5,0.4,2,1c0.5,0.6,0.6,1.5,0.4,2.2l-3.1,10C28.5,20.3,27.5,21,26.4,21z"/></svg> <span class="    indicator__counter">{{ count((array) session('cart')) }}</span> </span><span class="indicator__title">Shopping Cart</span> <span class="indicator__value">$250.00</span></a>
                         <div class="indicator__content">
                             <div class="dropcart">
                                 <ul class="dropcart__list">
+                                    @if(Session::has('cart'))
+                                    @foreach(session('cart') as $id => $cart)
                                     <li class="dropcart__item">
                                         <div class="dropcart__item-image">
-                                            <a href="product-full.html"><img src="{{asset('web/images/products/product-4-70x70.jpg')}}" alt=""></a>
+                                            <a href="product-full.html"><img src="{{asset('/images/products/'.$cart['main_image'])}}" width="100" alt=""></a>
                                         </div>
                                         <div class="dropcart__item-info">
-                                            <div class="dropcart__item-name"><a href="product-full.html">Glossy Gray 19" Aluminium Wheel AR-19</a></div>
+                                            <div class="dropcart__item-name"><a href="product-full.html">{{$cart['name']}}</a></div>
                                             <ul class="dropcart__item-features">
                                                 <li>Color: Yellow</li>
                                                 <li>Material: Aluminium</li>
                                             </ul>
                                             <div class="dropcart__item-meta">
-                                                <div class="dropcart__item-quantity">2</div>
-                                                <div class="dropcart__item-price">$699.00</div>
+                                                <div class="dropcart__item-quantity">{{$cart['quantity']}}</div>
+                                                {{-- <div class="dropcart__item-price">${{number_format($cart['quantity'], 2) * number_format($cart['retailer_min_price'], 2)}}</div> --}}
                                             </div>
                                         </div>
-                                        <button type="button" class="dropcart__item-remove">
+                                        <button type="button" class="dropcart__item-remove" data-id="{{ $id }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10">
-                                                <path d="M8.8,8.8L8.8,8.8c-0.4,0.4-1,0.4-1.4,0L5,6.4L2.6,8.8c-0.4,0.4-1,0.4-1.4,0l0,0c-0.4-0.4-0.4-1,0-1.4L3.6,5L1.2,2.6
-                                    c-0.4-0.4-0.4-1,0-1.4l0,0c0.4-0.4,1-0.4,1.4,0L5,3.6l2.4-2.4c0.4-0.4,1-0.4,1.4,0l0,0c0.4,0.4,0.4,1,0,1.4L6.4,5l2.4,2.4
-                                    C9.2,7.8,9.2,8.4,8.8,8.8z" />
+                                                    <path d="M8.8,8.8L8.8,8.8c-0.4,0.4-1,0.4-1.4,0L5,6.4L2.6,8.8c-0.4,0.4-1,0.4-1.4,0l0,0c-0.4-0.4-0.4-1,0-1.4L3.6,5L1.2,2.6
+                                        c-0.4-0.4-0.4-1,0-1.4l0,0c0.4-0.4,1-0.4,1.4,0L5,3.6l2.4-2.4c0.4-0.4,1-0.4,1.4,0l0,0c0.4,0.4,0.4,1,0,1.4L6.4,5l2.4,2.4
+                                        C9.2,7.8,9.2,8.4,8.8,8.8z" />
                                             </svg>
                                         </button>
                                     </li>
                                     <li class="dropcart__divider" role="presentation"></li>
-                                    <li class="dropcart__item">
+                                    @endforeach
+                                    @endif
+                                    {{-- <li class="dropcart__item">
                                         <div class="dropcart__item-image">
                                             <a href="product-full.html"><img src="{{asset('web/images/products/product-2-70x70.jpg')}}" alt=""></a>
                                         </div>
@@ -371,8 +400,8 @@
                                     C9.2,7.8,9.2,8.4,8.8,8.8z" />
                                             </svg>
                                         </button>
-                                    </li>
-                                    <li class="dropcart__divider" role="presentation"></li>
+                                    </li> --}}
+                                    {{-- <li class="dropcart__divider" role="presentation"></li> --}}
                                 </ul>
                                 <div class="dropcart__totals">
                                     <table>
