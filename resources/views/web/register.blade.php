@@ -30,29 +30,61 @@
                         <div class="col-md-8 d-flex" style="margin: 0 auto">
                             <div class="card flex-grow-1 mb-0 ml-0 ml-lg-3 mr-0 mr-lg-4">
                                 <div class="card-body card-body--padding--2">
+                                    @if (Session::has('message'))
+                                    <div class="alert alert-success" >{{ Session::get('message') }}</div>
+                                    @endif
+                                    @if (Session::has('error'))
+                                        <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                                    @endif
                                     <h3 class="card-title">Register</h3>
-                                    <form>
+                                    <form method="POST" action="{{ route("user.register") }}">
+                                        @csrf
                                         <div class="form-group">
                                             <label for="checkout-phone">Full Name</label>
-                                            <input type="text" class="form-control" id="checkout-phone" placeholder="Full Name">
+                                            <input type="text" class="form-control" name="full_name" id="checkout-phone" placeholder="Full Name">
+                                            @if($errors->has('full_name'))
+                                            <span class="invalid-feedback" role="alert" style="color:red">
+                                                <strong>{{ $errors->first('full_name') }}</strong>
+                                            </span>
+                                            @endif
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="checkout-email">Email address</label>
-                                                <input type="email" class="form-control" id="checkout-email" placeholder="Email address">
+                                                <input type="email" class="form-control" name="email" id="checkout-email" placeholder="Email address">
+                                                @if($errors->has('email'))
+                                                <span class="invalid-feedback" role="alert" style="color:red">
+                                                    <strong>{{ $errors->first('email') }}</strong>
+                                                </span>
+                                                @endif
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="checkout-phone">Phone</label>
-                                                <input type="text" class="form-control" id="checkout-phone" placeholder="Phone">
+                                                <input type="text" class="form-control" name="phone" id="checkout-phone" placeholder="Phone">
+                                                @if($errors->has('phone'))
+                                                <span class="invalid-feedback" role="alert" style="color:red">
+                                                    <strong>{{ $errors->first('phone') }}</strong>
+                                                </span>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="signup-password">Password</label>
-                                            <input id="signup-password" type="password" class="form-control" placeholder="Secret word">
+                                            <input id="signup-password" type="password" name="password" class="form-control" placeholder="Secret word">
+                                            @if($errors->has('password'))
+                                            <span class="invalid-feedback" role="alert" style="color:red">
+                                                <strong>{{ $errors->first('password') }}</strong>
+                                            </span>
+                                            @endif
                                         </div>
                                         <div class="form-group">
                                             <label for="signup-confirm">Repeat password</label>
-                                            <input id="signup-confirm" type="password" class="form-control" placeholder="Secret word">
+                                            <input id="signup-confirm" type="password" name="password_confirmation" class="form-control" placeholder="Secret word">
+                                            @if($errors->has('password_confirmation'))
+                                            <span class="invalid-feedback" role="alert" style="color:red">
+                                                <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                            </span>
+                                            @endif
                                         </div>
                                         <div class="form-group mb-0"> 
                                             <small class="form-text text-muted"><a href="#">Already registered? Login</a></small>

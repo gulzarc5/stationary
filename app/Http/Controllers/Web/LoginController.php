@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -9,14 +9,8 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function index()
+    public function userLogin(Request $request, Guard $guard)
     {
-        return view('admin.index');
-    }
-
-    public function adminLogin(Request $request, Guard $guard)
-    {
-      
         $this->validate($request, [
             'email'   => 'required|email',
             'password' => 'required|min:6'
@@ -31,14 +25,14 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
            
-            if ($user->hasRole('admin')) {
-                return redirect()->intended('/admin/dashboard');
+            if ($user->hasRole('user')) {
+                return redirect()->intended('/user/dashboard');
             } else {
                 $guard->logout();
                 $request->session()->invalidate();
                 return redirect()->back()->with('error','User Id And Password Wrong');
             }
-        } else {       
+        } else {          
             return redirect()->back()->with('error','User Id And Password Wrong');
         }
     }
@@ -47,6 +41,6 @@ class LoginController extends Controller
     {
         $guard->logout();
         $request->session()->invalidate();
-        return redirect()->route('admin.login_form');
+        return redirect()->route('web.index');
     }
 }

@@ -10,6 +10,23 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Register USer
+Route::post('add/Users', 'Web\RegistrationController@registerUser')->name('user.register');
+
+// Add To Cart
+Route::get('/add/to/cart/{id}', 'Web\ProductController@getAddToCart')->name('product.add_to_cart');
+Route::patch('update-cart', 'Web\ProductController@update');
+Route::delete('remove-from-cart', 'Web\ProductController@remove');
+Route::get('/shopping-cart', 'Web\ProductController@cart')->name('frontend.cart');
+
+Route::group(['namespace' => 'Web'],function(){
+    Route::post('user/login', 'LoginController@userLogin');
+    Route::group(['middleware'=>'role:user','prefix'=>'user'],function(){
+        Route::get('/dashboard', 'DashboardController@dashboardView')->name('user.deshboard');        
+        Route::post('logout', 'LoginController@logout')->name('user.logout');
+    });
+});
+
 Route::group(['prefix' => 'product','namespace'=>'Web'],function(){
     Route::get('list/{slug}/{category_id}/{type}','ProductController@list')->name('web.listWithCategory');
     Route::get('list/ajax/{sort?}/{brand?}','ProductController@listAjax')->name('web.listAjax');
@@ -45,10 +62,7 @@ Route::get('/Wishlist', function () {
 })->name('web.wishlist.wishlist');
 
 //========= Cart =========//
-
-Route::get('/Cart', function () {
-    return view('web.cart.cart');
-})->name('web.cart.cart');
+Route::get('/Cart', 'Web\FrontendPagesController@cartPage')->name('web.cart.cart');
 
 //========= Checkout =========//
 

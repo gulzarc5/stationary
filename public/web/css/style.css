@@ -15366,6 +15366,10 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
     color: #ffdf40
 }
 
+.invalid-feedback{ 
+    display: block !important;
+}
+
 @media (max-width:1199.98px) {
     .post-header {
         padding-top: 0

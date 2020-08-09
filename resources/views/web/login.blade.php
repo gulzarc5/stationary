@@ -30,21 +30,42 @@
                         <div class="col-md-6 d-flex" style="margin: 0 auto">
                             <div class="card flex-grow-1 mb-md-0 mr-0 mr-lg-3 ml-0 ml-lg-4">
                                 <div class="card-body card-body--padding--2">
+                                    @if (Session::has('message'))
+                                    <div class="alert alert-success" >{{ Session::get('message') }}</div>
+                                    @endif
+                                    @if (Session::has('error'))
+                                        <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                                    @endif
                                     <h3 class="card-title">Login</h3>
-                                    <form>
+                                    {{ Form::open(array('url' => 'login', 'method' => 'post')) }}
                                         <div class="form-group">
                                             <label for="signin-email">Email address</label>
-                                            <input id="signin-email" type="email" class="form-control" placeholder="customer@example.com">
+                                            <input id="signin-email" type="email" name="email" class="form-control" placeholder="customer@example.com">
+                                            @if ($message = Session::get('login_error'))
+                                            <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                            @endif
+                                            @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <label for="signin-password">Password</label>
-                                            <input id="signin-password" type="password" class="form-control" placeholder="Secret word"> 
+                                            <input id="signin-password" type="password" name="password" class="form-control" placeholder="Secret word"> 
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                             <small class="form-text text-muted"><a href="forgot-password.php">Forgot password?</a></small>
                                         </div>
                                         <div class="form-group mb-0">
                                             <button type="submit" class="btn btn-primary mt-3">Login</button>
                                         </div>
-                                    </form>
+                                    {{ Form::close() }}
                                 </div>
                             </div>
                         </div>
