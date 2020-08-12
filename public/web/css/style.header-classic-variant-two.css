@@ -797,9 +797,9 @@
 }
 
 .header {
-    background: #1a79ff;
-    color: #fff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .09)
+    background: #ffffff;
+    color: #1a79ff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .09);
 }
 
 .header__topbar-classic-bg {
@@ -949,11 +949,11 @@
 }
 
 .indicator__icon {
-    fill: #fff
+    fill: #1d7aff;
 }
 
 .indicator__title {
-    color: #cce3ff
+    color: #292929;
 }
 
 .indicator__value {
@@ -1534,8 +1534,8 @@
 
 .search__input {
     color: #262626;
-    background-color: #fff;
-    border-color: #fff
+    background-color: #f1f1f1;
+    border-color: #0c61db36;
 }
 
 .search__input::-webkit-input-placeholder {

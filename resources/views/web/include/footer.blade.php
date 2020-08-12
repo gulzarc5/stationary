@@ -15,9 +15,9 @@
                                 <div class="site-footer__widget footer-contacts">
                                     <h5 class="footer-contacts__title">Contact Us</h5>
                                     <address class="footer-contacts__contacts">
-                                        <dl><dt>Phone Number</dt><dd>+1 (800) 060-07-30</dd></dl>
-                                        <dl><dt>Email Address</dt><dd>red-parts@example.com</dd></dl>
-                                        <dl style="width:100%"><dt>Our Location</dt><dd>715 Fake Street, New York 10021 USA</dd></dl>
+                                        <dl><dt>Phone Number</dt><dd> +91-9435148798</dd></dl>
+                                        <dl><dt>Email Address</dt><dd>info@sameiddhi.com</dd></dl>
+                                        <dl style="width:100%"><dt>Our Location</dt><dd>1st Floor,  House No. 43, 31 Jaswanta Road, Panbazar Guwahati <br>GSTIN : 18BYVPS0349J1ZM</dd></dl>
                                     </address>
                                 </div>
                             </div>

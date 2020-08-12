@@ -98,7 +98,7 @@
                 <div class="header__topbar-classic-bg"></div>
                 <div class="header__topbar-classic">
                     <div class="topbar topbar--classic">
-                        <div class="topbar__item-text"><a class="topbar__link" >Welcome to Samriddi (Panbazar, Guwahati- 781004) | Get graet items Disposable Products, Housekeeping Products, Packaging Material, Stationery. Call us on +91-9435148798 | Mail us On info@sameiddhi.com</a></div>
+                        <div class="topbar__item-text" style="width:100%"><a class="topbar__link text-center" style="width:100%">Welcome to Samriddi (1st Floor,  House No. 43, 31 Jaswanta Road Panbazar, Guwahati- 781004) | GSTIN: 18BYVPS0349J1ZM | Call us on +91-9435148798 | Mail us On info@sameiddhi.com</a></div>
                         <div class="topbar__item-spring"></div>
                     </div>
                 </div>
