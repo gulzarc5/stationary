@@ -87,7 +87,7 @@
                   <li><a><i class="fa fa-users" aria-hidden="true"></i> Users <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li class="sub_menu"><a href="{{route('admin.customer_list')}}">Customer List</a></li>
-                      <li class="sub_menu"><a href="{{route('admin.retailer_list')}}">Retailer List</a></li>
+                      {{-- <li class="sub_menu"><a href="{{route('admin.retailer_list')}}">Retailer List</a></li> --}}
                     </ul>
                   </li>
 				  
@@ -113,7 +113,7 @@
 
                   <li><a><i class="fa fa-first-order" aria-hidden="true"></i> Orders <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li class="sub_menu"><a href="#">New Orders</a></li>
+                      <li class="sub_menu"><a href="{{route('admin.order_list')}}">New Orders</a></li>
                       <li class="sub_menu"><a href="#">Accepted Orders</a></li>
                       <li class="sub_menu"><a href="#">Delivered Orders</a></li>
                     </ul>

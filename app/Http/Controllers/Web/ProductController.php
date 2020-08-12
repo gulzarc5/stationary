@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Categories;
 use App\Models\Brand;
+use App\Models\ProductSize;
 use Session;
 use Auth;
 
@@ -109,71 +110,14 @@ class ProductController extends Controller
 		}
 		return view('web.product.shop-detail',compact('product','related_product'));
 	}
+	
+	public function productSizeFetch($size_id)
+	{
+		$size = ProductSize::where('id',$size_id)->first();
+		$html = "<div class='product-card__price product-card__price--old'>$size->mrp</div>
+		<div class='product__price product__price--current'>$size->customer_price</div>";
+		return $html;
+	}
 
-	public function getAddToCart(Request $request, $id){
-		$product = Product::where('id',$id)->first();
-        if(!$product) {
-            abort(404);
-		}
-		$cart = session()->get('cart');
-        //  if cart is empty then this the first product
-        if(!$cart) {
-            $cart = [
-                    $id => [
-                        "id" => $product->id,
-                        "name" => $product->name,
-                        "slug" => $product->slug,
-                        "category_id" => $product->category_id,
-						"quantity" => 1,
-						"retailer_min_price" => $product->retailer_min_price,
-                        "main_image" => $product->main_image,
-                    ]
-            ];
-            session()->put('cart', $cart);
-            return redirect()->back();
-        }
- 
-        // if cart not empty then check if this product exist then increment quantity
-        if(isset($cart[$id])) {
-            $cart[$id]['quantity']++;
-            session()->put('cart', $cart);
-            return redirect()->back();
-        }
 
-        // if item not exist in cart then add to cart with quantity = 1
-        $cart[$id] = [
-			"id" => $product->id,
-			"name" => $product->name,
-			"slug" => $product->slug,
-			"category_id" => $product->category_id,
-			"quantity" => 1,
-			"main_image" => $product->main_image,
-        ];
-
-        session()->put('cart', $cart);
-        return redirect()->back();
-    }
-
-    public function update(Request $request)
-    {
-        if(($request->id) && ($request->quantity))
-        {
-            $cart = session()->get('cart');
-            $cart[$request->id]["quantity"] = $request->quantity;
-            session()->put('cart', $cart);
-            session()->flash('success', 'Cart updated successfully');
-        }
-    }
- 
-    public function remove(Request $request)
-    {
-        if($request->id) {
-            $cart = session()->get('cart');
-            if(isset($cart[$request->id])) {
-                unset($cart[$request->id]);
-                session()->put('cart', $cart);
-            }
-            session()->flash('success', 'Product removed successfully');
-        }
-    }
 }

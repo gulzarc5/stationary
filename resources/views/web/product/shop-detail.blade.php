@@ -13,6 +13,7 @@
             @if (isset($product) && !empty($product))
             @php
                 $product_size = $product->minSize;
+               
             @endphp
             <div class="block-header block-header--has-breadcrumb">
                 <div class="container-fluid">
@@ -73,7 +74,7 @@
                                     <div class="product__header">
                                         <h1 class="product__title">{{$product->name}}</h1>
                                         <div class="product__tittle__info">
-                                             <h5><strong>SKU : </strong>201902-0057</h5> 
+                                             {{-- <h5><strong>SKU : </strong>201902-0057</h5>  --}}
                                              @if (isset($product->brand) && !empty($product->brand))
                                          	    <h5><strong>Brand : </strong>{{$product->brand->name}}</h5> 
                                              @endif
@@ -122,10 +123,12 @@
                                         
                                     </div>
                                     <div class="product__info">
-                                        <form class="product__info-card" action="{{route('web.cart.cart')}}">
+                                        <form class="product__info-card" action="{{route('web.add_to_cart')}}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{$product->id}}">
                                             <div class="product__info-body">
                                                 <div class="product__prices-stock">
-                                                    <div class="product__prices">
+                                                    <div class="product__prices" id="price_div">
                                                         @if (isset($product_size[0]))
                                                             <div class="product-card__price product-card__price--old">{{$product_size[0]->mrp}}</div>
                                                             <div class="product__price product__price--current">{{$product_size[0]->customer_price}}</div>
@@ -140,14 +143,33 @@
                                                         <div class="product-form__control">                                                            
 			                                                <div class="product__actions-item product__actions-item--quantity">
 			                                                    <div class="input-number">
-			                                                        <input class="input-number__input form-control form-control-lg" type="number" min="1" value="1">
+			                                                        <input class="input-number__input form-control form-control-lg" type="number" name="p_quantity" min="1" value="1" required>
 			                                                        <div class="input-number__add"></div>
 			                                                        <div class="input-number__sub"></div>
 			                                                    </div>
 			                                                </div>
                                                         </div>
-                                                        <div class="product-form__title deliv-avil">Availablity</div>
+                                                        <div class="product-form__title">Select Size</div>
                                                         <div class="product-form__control">                                                            
+			                                                <div class="product__actions-item product__actions-item--quantity">
+			                                                    <div class="input-number">
+			                                                        <select name="size_id" class="form-control" onchange="getSize(this.value)" required>
+                                                                        <option value="">Please Select Size</option>
+                                                                        @if (isset($product->sizes))
+                                                                            @foreach ($product->sizes as $size)
+                                                                                @if (isset($product_size[0]) && $product_size[0]->customer_price == $size->customer_price)
+                                                                                <option value="{{$size->id}}" selected>{{$size->name}}</option>
+                                                                                @else 
+                                                                                <option value="{{$size->id}}">{{$size->name}}</option>
+                                                                                @endif
+                                                                            @endforeach
+                                                                        @endif
+                                                                    </select>
+			                                                    </div>
+			                                                </div>
+                                                        </div>
+                                                        <div class="product-form__title deliv-avil">Availablity</div>
+                                                        <div class="product-form__control">
 			                                                <div class="product__actions-item product__actions-item--availabity">
 			                                                    <div class="input-number">
 			                                                        <input class="input-number__input form-control" type="number" placeholder="Enter Pincode">
@@ -163,18 +185,18 @@
                                             </div>
                                             <div class="product__actions">
                                                 <div class="product__actions-item product__actions-item--addtocart" style="margin-right: 5px">
-                                                    <a href="{{route('product.add_to_cart', ['id' =>$product->id])}}" class="btn btn-primary btn-lg btn-block">Add to cart</a>
+                                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Add To Cart</button>
                                                 </div>
-                                                <div class="product__actions-item product__actions-item--addtocart">
+                                                {{-- <div class="product__actions-item product__actions-item--addtocart">
                                                     <button class="btn btn-warning btn-lg btn-block">Buy Now</button>
-                                                </div>
-                                                <div class="product__actions-divider"> <hr></div>
+                                                </div> --}}
+                                                {{-- <div class="product__actions-divider"> <hr></div>
                                                 <button class="product__actions-item product__actions-item--wishlist" type="button">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
                                                         <path d="M13.9,8.4l-5.4,5.4c-0.3,0.3-0.7,0.3-1,0L2.1,8.4c-1.5-1.5-1.5-3.8,0-5.3C2.8,2.4,3.8,2,4.8,2s1.9,0.4,2.6,1.1L8,3.7
 														l0.6-0.6C9.3,2.4,10.3,2,11.3,2c1,0,1.9,0.4,2.6,1.1C15.4,4.6,15.4,6.9,13.9,8.4z" />
                                                     </svg> <span>Add to wishlist</span>
-                                                </button>
+                                                </button> --}}
                                             </div>
                                         </form>                                        
                                     </div>
@@ -237,7 +259,7 @@
                             </div>
                         </div>
                         <div class="block-sale__image" style="background-image: url('{{asset('web/images/sale-1903x640.jpg')}}');"></div>
-                                                <div class="container-fluid">
+                        <div class="container-fluid">
                             <div class="block-sale__carousel">
                                 <div class="owl-carousel">
                                     @if (isset($related_product) && !empty($related_product))
@@ -514,6 +536,28 @@
         <!-- site__footer -->
 	@endsection
 	
-	@section('script')
+    @section('script')
+        <script>
+            function getSize(id) {
+                
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type:"GET",
+                    url:"{{url('product/size/')}}/"+id+"",
+                    // beforeSend: function() {
+                    //     $('#delivery_info').html('<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>');    
+                    // },
+                    success:function(data){    
+                                        
+                        $("#price_div").html(data);  
+                    }
+                })
+            }
+            
+        </script>
 	@endsection
     

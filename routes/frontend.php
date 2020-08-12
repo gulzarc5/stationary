@@ -13,47 +13,54 @@
 // Register USer
 Route::post('add/Users', 'Web\RegistrationController@registerUser')->name('user.register');
 
-// Add To Cart
-Route::get('/add/to/cart/{id}', 'Web\ProductController@getAddToCart')->name('product.add_to_cart');
-Route::patch('update-cart', 'Web\ProductController@update');
-Route::delete('remove-from-cart', 'Web\ProductController@remove');
-Route::get('/shopping-cart', 'Web\ProductController@cart')->name('frontend.cart');
 
-Route::group(['namespace' => 'Web'],function(){
-    Route::post('user/login', 'LoginController@userLogin');
-    Route::group(['middleware'=>'role:user','prefix'=>'user'],function(){
+
+Route::group(['namespace' => 'Web','prefix'=>'user'],function(){
+    Route::post('login/submit', 'LoginController@userLogin')->name('web.user_login');
+    Route::get('login', 'LoginController@showLogin')->name('web.login');
+
+    
+    // Add To Cart
+    Route::group(['prefix'=>'cart'],function(){
+        Route::post('/add', 'CartController@AddCart')->name('web.add_to_cart');
+        Route::get('update/{cart_id}/{quantity}', 'CartController@cartUpdate')->name('web.cart_update');
+        Route::get('remove/{cart_id}', 'CartController@cartRemove')->name('web.cart_remove');
+        Route::get('/view', 'CartController@viewCart')->name('web.view_cart');
+    });
+
+
+    Route::group(['middleware'=>'role:user'],function(){
+
         Route::get('/dashboard', 'DashboardController@dashboardView')->name('user.deshboard');        
         Route::post('logout', 'LoginController@logout')->name('user.logout');
+
+        Route::get('checkout','CheckoutController@checkout')->name('web.checkout');
+        Route::post('order/place','CheckoutController@OrderPlace')->name('web.order_place');
+
+        Route::post('shipping/add','UserController@shippingAdd')->name('web.shipping_add');
     });
+    
 });
 
 Route::group(['prefix' => 'product','namespace'=>'Web'],function(){
     Route::get('list/{slug}/{category_id}/{type}','ProductController@list')->name('web.listWithCategory');
     Route::get('list/ajax/{sort?}/{brand?}','ProductController@listAjax')->name('web.listAjax');
     Route::get('details/{slug}/{id}','ProductController@productDetail')->name('web.productDetail');
+    Route::get('size/{id}','ProductController@productSizeFetch')->name('web.product_size_fetch');
 });
 
 Route::get('/', function () {
     return view('web.index');
 })->name('web.index');
 
-Route::get('/Login', function () {
-    return view('web.login');
-})->name('web.login');
+
 
 Route::get('/Register', function () {
     return view('web.register');
 })->name('web.register');
 
-//========= Product =========//
 
-Route::get('/Product-List', function () {
-    return view('web.product.shop-list');
-})->name('web.product.shop-list');
 
-Route::get('/Product-Detail', function () {
-    return view('web.product.shop-detail');
-})->name('web.product.shop-detail');
 
 //========= Wishlist =========//
 
@@ -61,14 +68,6 @@ Route::get('/Wishlist', function () {
     return view('web.wishlist.wishlist');
 })->name('web.wishlist.wishlist');
 
-//========= Cart =========//
-Route::get('/Cart', 'Web\FrontendPagesController@cartPage')->name('web.cart.cart');
-
-//========= Checkout =========//
-
-Route::get('/Checkout', function () {
-    return view('web.checkout.checkout');
-})->name('web.checkout.checkout');
 
 Route::get('/Confirm-Order', function () {
     return view('web.checkout.confirm-order');

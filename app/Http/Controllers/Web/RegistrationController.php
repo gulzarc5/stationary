@@ -11,8 +11,8 @@ class RegistrationController extends Controller
     public function  registerUser(Request $request){
         $this->validate($request, [
             'full_name' => 'required',
-            'email' =>      'required|email',
-            'phone' =>      'required|min:10',
+            'email' =>      'required|email|unique:users,email',
+            'phone' =>      'required|min:10|unique:users,mobile',
             'password'  => 'required|confirmed|min:6',
         ]);
 
@@ -20,18 +20,8 @@ class RegistrationController extends Controller
         $email = $request->input('email');
         $phone = $request->input('phone');
         $password = $request->input('password');
-        
+    
         $role = Role::where('id', 2)->first();
-
-        $mobile_check = User::where('mobile', $request->input('phone'))->count();
-        if($mobile_check){
-            return back()->with('error', 'Mobile No already exists!!!');
-        }
-
-        $email_check = User::where('email', $request->input('email'))->count();
-        if($email_check){
-            return back()->with('error', 'Email Already exists!!!');
-        }
 
         $user = new User;
         $user->name = $full_name;

@@ -17,6 +17,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $primary_key = 'id';
     protected $fillable = [
         'name', 'email', 'password','mobile','status',
     ];
@@ -38,4 +39,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function cart()
+    {
+        return $this->hasmany('App\Models\Cart','user_id',$this->primaryKey);
+    }
 }

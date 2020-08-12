@@ -37,7 +37,7 @@
                                         <div class="alert alert-danger">{{ Session::get('error') }}</div>
                                     @endif
                                     <h3 class="card-title">Login</h3>
-                                    {{ Form::open(array('url' => 'login', 'method' => 'post')) }}
+                                    {{ Form::open(array('route' => 'web.user_login', 'method' => 'post')) }}
                                         <div class="form-group">
                                             <label for="signin-email">Email address</label>
                                             <input id="signin-email" type="email" name="email" class="form-control" placeholder="customer@example.com">

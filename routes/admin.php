@@ -70,6 +70,11 @@ Route::group(['namespace' => 'Admin'],function(){
             Route::get('customer/list','UsersController@customerList')->name('admin.customer_list');            
             Route::get('retailer/list','UsersController@retailerList')->name('admin.retailer_list');
         });
+
+        Route::group(['prefix'=>'order'],function(){
+            Route::get('/list','OrderController@orderList')->name('admin.order_list');            
+            Route::get('/list/ajax','OrderController@orderListAjax')->name('admin.order_list_ajax');
+        });
         
     });
 });

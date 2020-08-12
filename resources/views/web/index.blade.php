@@ -18,21 +18,22 @@
                             <a class="block-slideshow__item" href="#">
                                 <span class="block-slideshow__item-image block-slideshow__item-image--desktop" style="background-image: url('{{asset('web/images/slides/slide1.jpg')}}')"></span>
                                 <span class="block-slideshow__item-image block-slideshow__item-image--mobile" style="background-image: url('{{asset('web/images/slides/slide-3-mobile.jpg')}}')"></span> 
-                                <span class="block-slideshow__item-title">When Buying Parts<br>With Installation </span><span class="block-slideshow__item-details">Installation of parts in the services of<br>our partners. </span><span class="block-slideshow__item-button">Shop Now </span>
+                                <span class="block-slideshow__item-title">When Buying Parts<br>With Installation </span><span class="block-slideshow__item-details">Installation of parts in the services of<br>our partners. </span>
+                                {{-- <span class="block-slideshow__item-button">Shop Now </span> --}}
                             </a>
                             <a class="block-slideshow__item" href="#">
                                 <span class="block-slideshow__item-image block-slideshow__item-image--desktop" style="background-image: url('{{asset('web/images/slides/slide2.jpg')}}')"></span>
                                 <span class="block-slideshow__item-image block-slideshow__item-image--mobile" style="background-image: url('{{asset('web/images/slides/slide-2-mobile.jpg')}}')"></span>
                                 <span class="block-slideshow__item-title">Not enough<br>spare parts? </span>
                                 <span class="block-slideshow__item-details">We have everything you need – replacement parts,<br>performance parts, accessories, oil & fluids,<br>tools and much more... </span>
-                                <span class="block-slideshow__item-button">Shop Now </span>
+                                {{-- <span class="block-slideshow__item-button">Shop Now </span> --}}
                             </a>
                             <a class="block-slideshow__item" href="#">
                                 <span class="block-slideshow__item-image block-slideshow__item-image--desktop" style="background-image: url('{{asset('web/images/slides/slide3.jpg')}}')"></span>
                                 <span class="block-slideshow__item-image block-slideshow__item-image--mobile" style="background-image: url('{{asset('web/images/slides/slide-1-mobile.jpg')}}')"></span>
                                 <span class="block-slideshow__item-title">Big Choice Of<br>Wheel Tires </span>
                                 <span class="block-slideshow__item-details">Any size and diameter, with or without spikes,<br>summer or winter, rain or snow. </span>
-                                <span class="block-slideshow__item-button">Shop Now</span>
+                                {{-- <span class="block-slideshow__item-button">Shop Now</span> --}}
                             </a>
                         </div>
                     </div>
@@ -85,12 +86,12 @@
                                     <div class="block-products-carousel__cell">
                                         <div class="product-card product-card--layout--grid">
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-list')}}"><img src="{{asset('web/images/products/1a.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/1a.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-list')}}">Disposable Spoon</a>
+                                                        <a href="#">Disposable Spoon</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -101,12 +102,12 @@
                                     <div class="block-products-carousel__cell">
                                         <div class="product-card product-card--layout--grid">
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-list')}}"><img src="{{asset('web/images/products/1b.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/1b.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-list')}}">Disposable Bowl</a>
+                                                        <a href="#">Disposable Bowl</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -117,12 +118,12 @@
                                     <div class="block-products-carousel__cell">
                                         <div class="product-card product-card--layout--grid">
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-list')}}"><img src="{{asset('web/images/products/1c.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/1c.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-list')}}">Disposable Plate</a>
+                                                        <a href="#">Disposable Plate</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -133,12 +134,12 @@
                                     <div class="block-products-carousel__cell">
                                         <div class="product-card product-card--layout--grid">
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-list')}}"><img src="{{asset('web/images/products/1d.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/1d.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-list')}}">Disposable Cup</a>
+                                                        <a href="#">Disposable Cup</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -197,12 +198,12 @@
                                     <div class="block-products-carousel__cell">
                                         <div class="product-card product-card--layout--grid">
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-list')}}"><img src="{{asset('web/images/products/3a.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/3a.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-list')}}">Multi-Level Thermal Lunchbox</a>
+                                                        <a href="#">Multi-Level Thermal Lunchbox</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -213,12 +214,12 @@
                                     <div class="block-products-carousel__cell">
                                         <div class="product-card product-card--layout--grid">
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-list')}}"><img src="{{asset('web/images/products/3b.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/3b.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-list')}}">Plastic Colorful Lunchbox</a>
+                                                        <a href="#">Plastic Colorful Lunchbox</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -229,12 +230,12 @@
                                     <div class="block-products-carousel__cell">
                                         <div class="product-card product-card--layout--grid">
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-list')}}"><img src="{{asset('web/images/products/3c.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/3c.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-list')}}">Plastic Colorful Designer Bottle</a>
+                                                        <a href="#">Plastic Colorful Designer Bottle</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -245,12 +246,12 @@
                                     <div class="block-products-carousel__cell">
                                         <div class="product-card product-card--layout--grid">
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-list')}}"><img src="{{asset('web/images/products/3d.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/3d.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-list')}}">Stailess Thermal Water Bottle</a>
+                                                        <a href="#">Stailess Thermal Water Bottle</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -309,12 +310,12 @@
                                     <div class="block-products-carousel__cell">
                                         <div class="product-card product-card--layout--grid">
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-list')}}"><img src="{{asset('web/images/products/2a.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/2a.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-list')}}">Softboard Packing Box</a>
+                                                        <a href="#">Softboard Packing Box</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -325,12 +326,12 @@
                                     <div class="block-products-carousel__cell">
                                         <div class="product-card product-card--layout--grid">
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-list')}}"><img src="{{asset('web/images/products/2b.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/2b.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-list')}}">Tap Packing Box</a>
+                                                        <a href="#">Tap Packing Box</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -341,12 +342,12 @@
                                     <div class="block-products-carousel__cell">
                                         <div class="product-card product-card--layout--grid">
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-list')}}"><img src="{{asset('web/images/products/2c.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/2c.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-list')}}">Packing Cover</a>
+                                                        <a href="#">Packing Cover</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -357,12 +358,12 @@
                                     <div class="block-products-carousel__cell">
                                         <div class="product-card product-card--layout--grid">
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-list')}}"><img src="{{asset('web/images/products/2d.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/2d.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-list')}}">Designer Gift Wrap</a>
+                                                        <a href="#">Designer Gift Wrap</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -421,12 +422,12 @@
                                     <div class="block-products-carousel__cell">
                                         <div class="product-card product-card--layout--grid">
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-list')}}"><img src="{{asset('web/images/products/4a.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/4a.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-list')}}">Kores Carbon paper</a>
+                                                        <a href="#">Kores Carbon paper</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -437,12 +438,12 @@
                                     <div class="block-products-carousel__cell">
                                         <div class="product-card product-card--layout--grid">
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-list')}}"><img src="{{asset('web/images/products/4b.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/4b.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-list')}}">File Cover</a>
+                                                        <a href="#">File Cover</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -453,12 +454,12 @@
                                     <div class="block-products-carousel__cell">
                                         <div class="product-card product-card--layout--grid">
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-list')}}"><img src="{{asset('web/images/products/4c.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/4c.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-list')}}">Office item</a>
+                                                        <a href="#">Office item</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -469,12 +470,12 @@
                                     <div class="block-products-carousel__cell">
                                         <div class="product-card product-card--layout--grid">
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-list')}}"><img src="{{asset('web/images/products/4d.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/4d.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-list')}}">Study Material</a>
+                                                        <a href="#">Study Material</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -543,13 +544,13 @@
                                                 </button>
                                             </div>
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-detail')}}"><img src="{{asset('web/images/products/1a.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/1a.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__meta"><span class="product-card__meta-title">SKU:</span> 140-10440-B</div>
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-detail')}}">Brandix Spark Plug Kit ASR-400111</a>
+                                                        <a href="#">Brandix Spark Plug Kit ASR-400111</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -558,7 +559,7 @@
                                                     <div class="product-card__price product-card__price--old">$21.00</div>
                                                     <div class="product-card__price product-card__price--current">$19.00</div>
                                                 </div>
-                                                <a class="product-card__addtocart-icon" aria-label="Add to cart" href="{{route('web.product.shop-detail')}}">
+                                                <a class="product-card__addtocart-icon" aria-label="Add to cart" href="#">
                                                     <i class="fa fa-arrow-right"></i>
                                                 </a>
                                             </div>
@@ -575,13 +576,13 @@
                                                 </button>
                                             </div>
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-detail')}}"><img src="{{asset('web/images/products/2b.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/2b.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__meta"><span class="product-card__meta-title">SKU:</span> 140-10440-B</div>
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-detail')}}">Brandix Spark Plug Kit ASR-400111</a>
+                                                        <a href="#">Brandix Spark Plug Kit ASR-400111</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -590,7 +591,7 @@
                                                     <div class="product-card__price product-card__price--old">$21.00</div>
                                                     <div class="product-card__price product-card__price--current">$19.00</div>
                                                 </div>
-                                                <a class="product-card__addtocart-icon" aria-label="Add to cart" href="{{route('web.product.shop-detail')}}">
+                                                <a class="product-card__addtocart-icon" aria-label="Add to cart" href="#">
                                                     <i class="fa fa-arrow-right"></i>
                                                 </a>
                                             </div>
@@ -607,13 +608,13 @@
                                                 </button>
                                             </div>
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-detail')}}"><img src="{{asset('web/images/products/3c.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/3c.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__meta"><span class="product-card__meta-title">SKU:</span> 140-10440-B</div>
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-detail')}}">Brandix Spark Plug Kit ASR-400111</a>
+                                                        <a href="#">Brandix Spark Plug Kit ASR-400111</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -622,7 +623,7 @@
                                                     <div class="product-card__price product-card__price--old">$21.00</div>
                                                     <div class="product-card__price product-card__price--current">$19.00</div>
                                                 </div>
-                                                <a class="product-card__addtocart-icon" aria-label="Add to cart" href="{{route('web.product.shop-detail')}}">
+                                                <a class="product-card__addtocart-icon" aria-label="Add to cart" href="#">
                                                     <i class="fa fa-arrow-right"></i>
                                                 </a>
                                             </div>
@@ -639,13 +640,13 @@
                                                 </button>
                                             </div>
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-detail')}}"><img src="{{asset('web/images/products/4d.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/4d.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__meta"><span class="product-card__meta-title">SKU:</span> 140-10440-B</div>
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-detail')}}">Brandix Spark Plug Kit ASR-400111</a>
+                                                        <a href="#">Brandix Spark Plug Kit ASR-400111</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -654,7 +655,7 @@
                                                     <div class="product-card__price product-card__price--old">$21.00</div>
                                                     <div class="product-card__price product-card__price--current">$19.00</div>
                                                 </div>
-                                                <a class="product-card__addtocart-icon" aria-label="Add to cart" href="{{route('web.product.shop-detail')}}">
+                                                <a class="product-card__addtocart-icon" aria-label="Add to cart" href="#">
                                                     <i class="fa fa-arrow-right"></i>
                                                 </a>
                                             </div>
@@ -671,13 +672,13 @@
                                                 </button>
                                             </div>
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-detail')}}"><img src="{{asset('web/images/products/1b.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/1b.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__meta"><span class="product-card__meta-title">SKU:</span> 140-10440-B</div>
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-detail')}}">Brandix Spark Plug Kit ASR-400111</a>
+                                                        <a href="#">Brandix Spark Plug Kit ASR-400111</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -686,7 +687,7 @@
                                                     <div class="product-card__price product-card__price--old">$21.00</div>
                                                     <div class="product-card__price product-card__price--current">$19.00</div>
                                                 </div>
-                                                <a class="product-card__addtocart-icon" aria-label="Add to cart" href="{{route('web.product.shop-detail')}}">
+                                                <a class="product-card__addtocart-icon" aria-label="Add to cart" href="#">
                                                     <i class="fa fa-arrow-right"></i>
                                                 </a>
                                             </div>
@@ -703,13 +704,13 @@
                                                 </button>
                                             </div>
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-detail')}}"><img src="{{asset('web/images/products/2c.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/2c.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__meta"><span class="product-card__meta-title">SKU:</span> 140-10440-B</div>
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-detail')}}">Brandix Spark Plug Kit ASR-400111</a>
+                                                        <a href="#">Brandix Spark Plug Kit ASR-400111</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -718,7 +719,7 @@
                                                     <div class="product-card__price product-card__price--old">$21.00</div>
                                                     <div class="product-card__price product-card__price--current">$19.00</div>
                                                 </div>
-                                                <a class="product-card__addtocart-icon" aria-label="Add to cart" href="{{route('web.product.shop-detail')}}">
+                                                <a class="product-card__addtocart-icon" aria-label="Add to cart" href="#">
                                                     <i class="fa fa-arrow-right"></i>
                                                 </a>
                                             </div>
@@ -735,13 +736,13 @@
                                                 </button>
                                             </div>
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-detail')}}"><img src="{{asset('web/images/products/3d.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/3d.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__meta"><span class="product-card__meta-title">SKU:</span> 140-10440-B</div>
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-detail')}}">Brandix Spark Plug Kit ASR-400111</a>
+                                                        <a href="#">Brandix Spark Plug Kit ASR-400111</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -750,7 +751,7 @@
                                                     <div class="product-card__price product-card__price--old">$21.00</div>
                                                     <div class="product-card__price product-card__price--current">$19.00</div>
                                                 </div>
-                                                <a class="product-card__addtocart-icon" aria-label="Add to cart" href="{{route('web.product.shop-detail')}}">
+                                                <a class="product-card__addtocart-icon" aria-label="Add to cart" href="#">
                                                     <i class="fa fa-arrow-right"></i>
                                                 </a>
                                             </div>
@@ -767,13 +768,13 @@
                                                 </button>
                                             </div>
                                             <div class="product-card__image">
-                                                <a href="{{route('web.product.shop-detail')}}"><img src="{{asset('web/images/products/4a.jpg')}}" alt=""></a>
+                                                <a href="#"><img src="{{asset('web/images/products/4a.jpg')}}" alt=""></a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__meta"><span class="product-card__meta-title">SKU:</span> 140-10440-B</div>
                                                 <div class="product-card__name">
                                                     <div>
-                                                        <a href="{{route('web.product.shop-detail')}}">Brandix Spark Plug Kit ASR-400111</a>
+                                                        <a href="#">Brandix Spark Plug Kit ASR-400111</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -782,7 +783,7 @@
                                                     <div class="product-card__price product-card__price--old">$21.00</div>
                                                     <div class="product-card__price product-card__price--current">$19.00</div>
                                                 </div>
-                                                <a class="product-card__addtocart-icon" aria-label="Add to cart" href="{{route('web.product.shop-detail')}}">
+                                                <a class="product-card__addtocart-icon" aria-label="Add to cart" href="#">
                                                     <i class="fa fa-arrow-right"></i>
                                                 </a>
                                             </div>
